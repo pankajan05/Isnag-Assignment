@@ -51,3 +51,6 @@ D:\Assignment\Hasa\Ayubo\Ayubo\obj\Debug\Ayubo.csproj.CopyComplete
 D:\Assignment\Hasa\Ayubo\Ayubo\obj\Debug\Ayubo.exe
 D:\Assignment\Hasa\Ayubo\Ayubo\obj\Debug\Ayubo.pdb
 D:\Assignment\Hasa\Ayubo\Ayubo\obj\Debug\Ayubo.VehicleType.resources
+D:\Assignment\Hasa\Ayubo\Ayubo\obj\Debug\Ayubo.Vehicle.resources
+D:\Assignment\Hasa\Ayubo\Ayubo\obj\Debug\Ayubo.Hire.resources
+D:\Assignment\Hasa\Ayubo\Ayubo\obj\Debug\Ayubo.Rent.resources

@@ -91,10 +91,6 @@ namespace Ayubo
             }
         }
 
-        private void Clear_Click(object sender, EventArgs e)
-        {
-            this.clear();
-        }
 
         private void Back_Click(object sender, EventArgs e)
         {
@@ -153,6 +149,11 @@ namespace Ayubo
         {
             con = new MySqlConnection("server=127.0.0.1;uid=root;pwd=1234;database=Ayubo;");
             load();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.clear();
         }
     }
 }

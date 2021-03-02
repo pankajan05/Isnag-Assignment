@@ -89,6 +89,9 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Hire.resx">
+      <DependentUpon>Hire.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Package.resx">
       <DependentUpon>Package.cs</DependentUpon>
     </EmbeddedResource>
@@ -101,6 +104,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Rent.resx">
+      <DependentUpon>Rent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vehicle.resx">
+      <DependentUpon>Vehicle.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VehicleType.resx">
       <DependentUpon>VehicleType.cs</DependentUpon>
     </EmbeddedResource>

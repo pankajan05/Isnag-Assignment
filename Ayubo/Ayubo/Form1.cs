@@ -12,6 +12,8 @@ namespace Ayubo
 {
     public partial class Form1 : Form
     {
+        
+
         public Form1()
         {
             InitializeComponent();
@@ -24,7 +26,9 @@ namespace Ayubo
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            Vehicle vehicle = new Vehicle();
+            vehicle.Show();
+            this.Hide();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -38,6 +42,20 @@ namespace Ayubo
         {
             VehicleType vehicletype = new VehicleType();
             vehicletype.Show();
+            this.Hide();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Hire hire = new Hire();
+            hire.Show();
+            this.Hide();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Rent rent = new Rent();
+            rent.Show();
             this.Hide();
         }
     }

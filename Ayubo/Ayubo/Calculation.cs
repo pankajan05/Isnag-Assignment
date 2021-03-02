@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,67 @@ namespace Ayubo
 
         //store the vehicle type
         IDictionary<string, double> vehicle_type = new Dictionary<string, double>();
+
+        IDictionary<string, string> vehicle = new Dictionary<string, string>();
+
+        MySqlConnection con = new MySqlConnection("server=127.0.0.1;uid=root;pwd=1234;database=Ayubo;");
+
+        public Calculation()
+        {
+            try
+            {
+                con.Open();
+                Console.WriteLine("Myslq Connected Successfully");
+
+                String sql = "SELECT * FROM vehicletype";
+                MySqlCommand cmd = new MySqlCommand(sql, con);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    vehicle_type.Add(reader.GetString("VehicleType"), double.Parse(reader.GetString("Tariff")));
+                }
+            }
+            finally { con.Close(); }
+
+            try
+            {
+                con.Open();
+                String sql = "SELECT * FROM vehicle";
+                MySqlCommand cmd = new MySqlCommand(sql, con);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    vehicle.Add(reader.GetString("VehicleNo"), reader.GetString("VehicleType"));
+                }
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            try {
+                con.Open();
+
+                String sql = "SELECT * FROM package";
+                MySqlCommand cmd = new MySqlCommand(sql, con);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    package.Add(reader.GetString("package_Name"), double.Parse(reader.GetString("Package_Price")));
+                }
+
+            }
+            catch (Exception exe)
+            {
+                Console.WriteLine(exe.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
 
         double weekly_rent = 2000.00;
         double daily_rent = 400.00;
@@ -41,7 +103,7 @@ namespace Ayubo
                 total_rent_value += daily_driver_cost * total_days;
             }
 
-            return total_rent_value;
+            return total_rent_value+ vehicle_type[vehicle[vehicle_no.ToString()]];
 
         }
 
@@ -54,7 +116,7 @@ namespace Ayubo
             double total_time = 0.0;
             double base_hire_charge = 0.00;
             double waiting_charge = 0.00;
-            double extra_km_charge = (end_km_reading - start_km_reading - package[package_type]) * extra_km_rate;
+            double extra_km_charge = (end_km_reading - start_km_reading - 100) * extra_km_rate;
 
             if (end_time - start_time > 0) {
                 total_time = end_time - start_time;
@@ -66,7 +128,7 @@ namespace Ayubo
             base_hire_charge = package[package_type];
 
             Dictionary<string, double> result = new Dictionary<string, double>() {
-                { "base_hire_charge",base_hire_charge },
+                { "base_hire_charge",base_hire_charge+vehicle_type[vehicle[vehicle_no.ToString()]] },
                 { "waiting_charge",waiting_charge },
                 {"extra_km_charge",extra_km_charge }
             };
@@ -82,7 +144,7 @@ namespace Ayubo
             int total_day = 0;
             double base_hire_charge = 0.00;
             double overnight_stay_charge = 0.00;
-            double extra_km_charge = (end_km_reading - start_km_reading - package[package_type]) * extra_km_rate;
+            double extra_km_charge = (end_km_reading - start_km_reading -100) * extra_km_rate;
 
             if (end_date - start_date > 0)
             {
@@ -97,7 +159,7 @@ namespace Ayubo
             base_hire_charge = package[package_type];
 
             Dictionary<string, double> result = new Dictionary<string, double>() {
-                { "base_hire_charge",base_hire_charge },
+                { "base_hire_charge",base_hire_charge+ vehicle_type[vehicle[vehicle_no.ToString()]] },
                 { "overnight_stay_charge",overnight_stay_charge },
                 {"extra_km_charge",extra_km_charge }
             };
