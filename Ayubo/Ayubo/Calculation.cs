@@ -10,12 +10,13 @@ namespace Ayubo
     class Calculation
     {
         //Store the package details
-        IDictionary<string, double> package = new Dictionary<string, double>();
+        private IDictionary<string, double> package = new Dictionary<string, double>();
 
         //store the vehicle type
-        IDictionary<string, double> vehicle_type = new Dictionary<string, double>();
+        private IDictionary<string, double> vehicle_type = new Dictionary<string, double>();
 
-        IDictionary<string, string> vehicle = new Dictionary<string, string>();
+        //store the vehicle number and it's type
+        private IDictionary<string, string> vehicle = new Dictionary<string, string>();
 
         MySqlConnection con = new MySqlConnection("server=127.0.0.1;uid=root;pwd=1234;database=Ayubo;");
 
